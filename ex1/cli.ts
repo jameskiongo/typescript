@@ -7,11 +7,11 @@ interface ExerciseResult {
   target: number;
   average: number;
 }
-const calculateExercisesCli = () // exercised: number[],
-// target: number,
-// args: string[],
-: ExerciseResult => {
+const calculateExercisesCli = (): ExerciseResult => {
   const args = process.argv.splice(2);
+  const target = Number(args[0]);
+  const exercisedString = args.splice(1);
+  const exercised = exercisedString.map(Number);
 
   let daysTrained = 0;
   let averageTime = 0;
@@ -60,4 +60,4 @@ const calculateExercisesCli = () // exercised: number[],
     ratingDescription: ratingDescription,
   };
 };
-console.log(calculateExercisesCli([3, 0, 2, 4.5, 0, 3, 1], 2));
+console.log(calculateExercisesCli());
