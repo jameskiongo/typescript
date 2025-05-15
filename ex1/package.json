@@ -8,14 +8,18 @@
     "ts-node": "ts-node",
     "bmi": "ts-node bmiCalculator.ts",
     "calculator": "ts-node exerciseCalculator.ts",
-    "cli": "ts-node cli.ts"
+    "cli": "ts-node cli.ts",
+    "start": "ts-node index.ts",
+    "dev": "ts-node-dev index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@types/express": "^5.0.1",
     "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3"
   },
   "dependencies": {

@@ -1,4 +1,4 @@
-const calculateBmi = (height: number, weight: number) => {
+export const calculateBmi = (height: number, weight: number) => {
   const convert = Math.pow(height / 100, 2);
   const bmi = weight / convert;
   console.log(bmi);
@@ -14,4 +14,3 @@ const calculateBmi = (height: number, weight: number) => {
     throw new Error("Invalid");
   }
 };
-console.log(calculateBmi(180, 74));

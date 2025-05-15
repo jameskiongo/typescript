@@ -7,7 +7,7 @@ interface ExerciseResult {
   target: number;
   average: number;
 }
-const calculateExercisesCli = (): ExerciseResult => {
+export const calculateExercisesCli = (): ExerciseResult => {
   const args = process.argv.splice(2);
   const target = Number(args[0]);
   const exercisedString = args.splice(1);

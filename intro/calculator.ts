@@ -1,6 +1,6 @@
 // Alternative (instead of returning both a string and a number, throw an error)
 type Operation = "add" | "divide" | "multiply";
-const calculator = (a: number, b: number, op: Operation): number => {
+export const calculator = (a: number, b: number, op: Operation): number => {
   switch (op) {
     case "multiply":
       return a * b;
