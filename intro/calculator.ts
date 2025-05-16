@@ -1,5 +1,5 @@
 // Alternative (instead of returning both a string and a number, throw an error)
-type Operation = "add" | "divide" | "multiply";
+export type Operation = "add" | "divide" | "multiply";
 export const calculator = (a: number, b: number, op: Operation): number => {
   switch (op) {
     case "multiply":

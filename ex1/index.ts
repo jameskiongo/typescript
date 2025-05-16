@@ -1,6 +1,13 @@
 import express from "express";
 import { calculateBmi } from "./bmiCalculator";
+import { calculateExercises } from "./exerciseCalculator";
 const app = express();
+app.use(express.json());
+
+interface RequestBody {
+  exercised: number[];
+  target: number;
+}
 
 app.get("/bmi", (req, res) => {
   const weight = Number(req.query.weight);
@@ -16,6 +23,20 @@ app.get("/bmi", (req, res) => {
       bmi: result,
     });
   }
+});
+app.post("/calculator", (req, res) => {
+  const { exercised, target } = req.body as RequestBody;
+  if (
+    !Array.isArray(exercised) ||
+    exercised.some((day) => typeof day !== "number") ||
+    typeof target !== "number" ||
+    target < 0
+  ) {
+    res.status(400).send({ error: "malformatted parameters" });
+    return;
+  }
+  const result = calculateExercises(exercised, target);
+  res.send(result);
 });
 
 const PORT = 3000;
