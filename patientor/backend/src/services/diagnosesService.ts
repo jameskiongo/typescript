@@ -1,17 +1,23 @@
 import diagnosesData from "../data/diagnoses";
-import { PatientEntry } from "../types";
+import patientData from "../data/patients";
+import { PatientEntry, DiagnosticEntry } from "../types";
 
-const data: PatientEntry[] = diagnosesData;
+const patientsData: PatientEntry[] = patientData;
+const diagnosticData: DiagnosticEntry[] = diagnosesData;
 
-const getEntries = (): PatientEntry[] => {
-  return data;
+const getDiagnosesEntries = (): DiagnosticEntry[] => {
+  return diagnosticData;
 };
 
+const getPatientData = (): PatientEntry[] => {
+  return patientsData;
+};
 const addEntry = () => {
   return null;
 };
 
 export default {
-  getEntries,
+  getDiagnosesEntries,
+  getPatientData,
   addEntry,
 };
