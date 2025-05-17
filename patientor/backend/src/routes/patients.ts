@@ -1,11 +1,11 @@
 import express, { Response } from "express";
 import diagnosesService from "../services/diagnosesService";
-import { DiagnosticEntry } from "../types";
+import { NonSensitivePatientEntry } from "../types";
 
 const router = express.Router();
 
-router.get("/", (_req, res: Response<DiagnosticEntry[]>) => {
-  res.send(diagnosesService.getDiagnosesEntries());
+router.get("/", (_req, res: Response<NonSensitivePatientEntry[]>) => {
+  res.send(diagnosesService.getNonSensitiveEntries());
 });
 router.post("/", (_req, res) => {
   res.send("patientData");
