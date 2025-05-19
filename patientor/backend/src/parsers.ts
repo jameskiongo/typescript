@@ -35,7 +35,7 @@ export const parseSsn = (ssn: unknown): string => {
 };
 export const parseGender = (gender: unknown): Gender => {
   if (!gender || !isString(gender) || !isGender(gender)) {
-    throw new Error("Incorrect or missing date" + gender);
+    throw new Error("Incorrect or missing Gender-" + gender);
   }
   return gender;
 };

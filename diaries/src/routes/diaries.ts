@@ -1,16 +1,17 @@
-import express, { Response } from "express";
+import express, { Request, Response } from "express";
 import diaryService from "../services/diaryService";
-import { NonSensitiveDiaryEntry } from "../types";
-import toNewDiaryEntry from "../utils";
+import { NewDiaryEntry, DiaryEntry } from "../types";
+import { errorMiddleware, newDiaryParser } from "../middleware/error";
 
 const router = express.Router();
 
-router.get("/", (_req, res: Response<NonSensitiveDiaryEntry[]>) => {
+router.get("/", (_req, res: Response<DiaryEntry[]>) => {
   res.send(diaryService.getNonSensitiveEntries());
 });
 
 router.get("/:id", (req, res) => {
   const diary = diaryService.findById(Number(req.params.id));
+
   if (diary) {
     res.send(diary);
   } else {
@@ -18,19 +19,18 @@ router.get("/:id", (req, res) => {
   }
 });
 
-router.post("/", (req, res) => {
-  try {
-    const newDiaryEntry = toNewDiaryEntry(req.body);
-
-    const addedEntry = diaryService.addDiary(newDiaryEntry);
+router.post(
+  "/",
+  newDiaryParser,
+  (
+    req: Request<unknown, unknown, NewDiaryEntry>,
+    res: Response<DiaryEntry>,
+  ) => {
+    const addedEntry = diaryService.addDiary(req.body);
     res.json(addedEntry);
-  } catch (error: unknown) {
-    let errorMessage = "Something went wrong :(";
-    if (error instanceof Error) {
-      errorMessage = "Error: " + error.message;
-    }
-    res.status(400).send(errorMessage);
-  }
-});
+  },
+);
+
+router.use(errorMiddleware);
 
 export default router;
