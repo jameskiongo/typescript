@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 import { NewDiaryEntry, Visibility, Weather } from "./types";
 
 export const newEntrySchema = z.object({
