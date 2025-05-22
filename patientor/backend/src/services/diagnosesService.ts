@@ -36,8 +36,8 @@ const addPatient = (entry: NewPatientEntry): PatientEntry => {
 const getPatientData = (): PatientEntry[] => {
   return patientsData;
 };
-const addEntry = () => {
-  return null;
+const addEntry = (input: string): string => {
+  return input;
 };
 
 export default {
